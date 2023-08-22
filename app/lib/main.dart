@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
         fontFamily: "Jamsil"
       ),
-      home: Home(Keys.length),
+      home: const Home(),
     );
   }
 }
