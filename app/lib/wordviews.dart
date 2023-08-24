@@ -66,7 +66,7 @@ class _WordViewsState extends State<WordViews> {
             ? null
             : BottomAppBar(
                 shape: CircularNotchedRectangle(),
-                color: Colors.deepPurpleAccent[100],
+                color: Colors.white,
                 notchMargin: 40,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -129,11 +129,9 @@ class DirectViewState extends State<DirectView> {
   List<bool> checked =
       List<bool>.filled(COUNT, false); //영여인지 뜻인지 check 전체 단어 갯수만큼
   DirectViewState(this.chapter, this.count);
-
   bool variable = false;
-
-  Future<int> get_scrap() async{
-    return await Scrap[INDEX];
+  int get_scrap(){
+    return Scrap[INDEX];
   }
 
   void checking_scrap() {
@@ -148,7 +146,6 @@ class DirectViewState extends State<DirectView> {
     variable = true;
     setState(() {});
   }
-
   void down() {
     if (INDEX == count-1) return;
     INDEX++;
@@ -169,33 +166,50 @@ class DirectViewState extends State<DirectView> {
           INDEX = index;
         }
         return Column(
-
             children: [
               AspectRatio(
-                aspectRatio: 1,
-                child: Container(
-                  color: Colors.amber,
-                  padding: EdgeInsets.only(left: 10,right: 10),
-                  child: Center(
-                    child: ListTile(
-                      title: Text(
-                          "${Keys[chapter * 40 + index]}", textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),),
+                aspectRatio: 1.5,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20,right: 20,top: 10),
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.topRight,
+                          padding: EdgeInsets.only(top:10,right: 10),
+                          child: IconButton(icon: (get_scrap()==1) ? Icon(Icons.star) : Icon(Icons.star_border),
+                            onPressed: (){
+                              checking_scrap();
+                            },
+                          )
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 10,right: 10),
+                            child: Center(
+                              child: ListTile(
+                                title: Text(
+                                    "${Keys[chapter * 40 + index]}", textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),Expanded(
                 child: Container(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                   padding: EdgeInsets.only(left: 10,right: 10),
                   child: Center(
                     child: ListTile(
                       title: Text(
-                          "${word[Keys[chapter * 40 + index]]}", textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                          "${word[Keys[chapter * 40 + index]]}", textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
                     ),
                   ),
                 ),
               ),
-
             ]);
       },
       controller: _controller,

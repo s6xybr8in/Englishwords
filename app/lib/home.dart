@@ -31,8 +31,11 @@ class Home extends StatelessWidget {
 Widget First_Index(BuildContext context){
   return SizedBox(
     height: 100,
-    child: Card(
-      child: ListTile(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ScrapView(),)),title: Text("즐겨찾기 목록"),titleTextStyle: TextStyle(fontSize: 22,fontWeight: FontWeight.bold)),
+    child: Padding(
+      padding: EdgeInsets.only(top: 5,right: 10,left: 10),
+      child: Card(
+        child: ListTile(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ScrapView(),)),title: Text("즐겨찾기 목록"),titleTextStyle: TextStyle(fontSize: 22,fontWeight: FontWeight.bold)),
+      ),
     ),
   );
 }
@@ -40,12 +43,15 @@ Widget First_Index(BuildContext context){
 Widget Content(BuildContext context,int index) {
   return SizedBox(
     height: 100,
-    child: Card(
-      child: ListTile(onTap: () =>
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) => WordViews(chapter: index),)),
-        title: Text("${index+1}일차"),contentPadding: EdgeInsets.only(left: 20,top: 5),
-      titleTextStyle: TextStyle(fontSize: 22,fontWeight: FontWeight.bold) ),
-  )
+    child: Padding(
+      padding: EdgeInsets.only(right: 10,left: 10),
+      child: Card(
+        child: ListTile(onTap: () =>
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => WordViews(chapter: index),)),
+          title: Text("${index+1}일차"),contentPadding: EdgeInsets.only(left: 20,top: 5),
+        titleTextStyle: TextStyle(fontSize: 22,fontWeight: FontWeight.bold) ),
+  ),
+    )
   );
 }
